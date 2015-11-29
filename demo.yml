@@ -1,0 +1,72 @@
+project: Software
+version: 0.2
+unit: 'week'
+# unit: 'month'
+length: 20
+start: 2015-11-30
+
+options:
+    key_legend: true
+    key_in_block: true
+    show_year: true
+    title: 'Software project timeline'
+    label_width: 40.0
+    # title: false
+    # footer: false
+    # footer: 'Written by Bob T. Developer'
+    # one_based: true
+
+keys:
+  - name: Bob
+    color: [154,74,74]
+  - name: Bill
+    color: [83,148,83]
+
+rows:
+  - name: ''
+    stripe: false
+    breaks:
+      - name: Christmas
+        at: 2015-12-24
+        length: 1.58
+
+      - name: Easter
+        at: 2016-03-21
+        length: 2
+  
+  - name: Phases
+    stripe: false
+    phases:
+      - name: Phase 1
+        at: 0
+        length: 10
+
+  - name: W1 specification
+    at: 0
+    length: 2.5
+  
+  - name: W2 development
+    at: [+W1,2.5]
+    length: 4
+    dep: W1
+    key: bob
+  
+  - name: D1 documentation
+    at: -W2
+    length: 2
+    dep: -W2
+
+  - name: M1 prototype
+    at: 10
+    dep: W2
+
+  - name: W3 testing
+    at: M1
+    length: 4
+    dep: M1
+    key: bill
+
+  - name: M2 product
+    at: 20
+    dep: W3
+
