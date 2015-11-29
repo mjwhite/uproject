@@ -577,7 +577,7 @@ def get_key(key,project):
     Find a key (colour and label) to apply to a work block.
     """
     for try_key in project['keys']:
-        if re.match(key,try_key['name'],re.I):
+        if re.match(key+r'\b',try_key['name'],re.I):
             return try_key
     return None
 
