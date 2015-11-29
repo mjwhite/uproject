@@ -6,50 +6,18 @@
 # Mark White <mark@celos.net> 
 # November 2015
 # 
-# Requires pyFPDF - do "pip install fpdf".
+# uProject is a Gantt drawing tool.  It's good for quickly creating
+# and modifying timelines of simple projects. It's designed to be more
+# efficient than doing the same thing in a graphics package, and to
+# produce reasonably attractive output.  But it's purely a drawing
+# tool, not a project management tool.  It understands activities with
+# relative dates and dependencies, but it won't find the critical path
+# or resolve dependency order.
 # 
-# uProject is a Gantt drawing tool that doesn't do project management.
+# See README.md and/or demo.yml for usage.
 #
-# It's designed for those times where somebody asked for a timeline,
-# and you know what the Gantt chart should look like, but want to
-# tweak it in terms of relative timing rather than redrawing it by
-# hand.  Between the "use Project or Taskjuggler" and the "throw it
-# together with Excel or Inkscape" use cases.
-#
-# It works in units of weeks or months. The sizes are designed for
-# projects of 20-30 units (~6 months in weeks, ~2 years in months);
-# axis fonts will start to scale down a bit somewhere in this range.
-# It's designed for whole-unit timings, but you can specify fractional
-# start/duration numbers (or start dates which are not Monday or 1st)
-# if you want. Note that unit times are zero-based by default: set
-# option one_based to change this both in the axis labels and the
-# input parsing.
-#
-# One page will hold 27 rows (which is 25 rows + breaks + phases).
-# uProject isn't really designed for projects too complex to fit on a
-# single page; pages do break, but dependencies are only drawn to the
-# top of the current page.
-#
-# It can draw work blocks, milestones, and dependency lines. Work
-# blocks can be colour-coded to show resources, with a key undeneath.
-# All objects can be defined relative to other objects, or with a week
-# number, or with an actual date.
-#
-# Input is a very straightforward YAML file: all current features are
-# shown in demo.yml.
-#
-# Relative timings and dependencies are specified as strings; these
-# strings are used for case-insensitive matching against the name of
-# all other blocks. Optionally the string can be prefixed with "-" for
-# the start of "+" for the end of the block (default is "+"). Timings
-# may also be lists like [regex, offset] to define an additional +/-
-# offset from the referenced block in weeks.
-#
-# String matching looks cleanest if you prefix your items with
-# unique codes, as in demo.yml, but that's not obligatory. All matches
-# are anchored to the start of the string and finish on a word
-# boundary, so 'W1' matches 'W1 activity' but not 'W10 activity'. It
-# will also work fine just to match against the whole item name.
+# Requires pyFPDF: "pip install fpdf".
+# 
 
 from fpdf import FPDF
 from datetime import date, timedelta
