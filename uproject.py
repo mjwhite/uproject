@@ -189,8 +189,13 @@ class Calendar(object):
         self._really_draw_deps()
         self.dep_segments = []
     
-    def _get_label_size(self,txt='30 May',size=7.0,width=None):
-        if width == None:
+    def _get_label_size(self,txt=None,size=7.0,width=None):
+        if txt is None:
+            if self.unit == 'week':
+                txt = '30 May'
+            else:
+                txt = 'May'
+        if width is None:
             width = self.unit_width
         while 1:
             self.pdf.set_font('Arial', '', size)
