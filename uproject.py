@@ -16,16 +16,32 @@
 # 
 # See README.md and/or demo.yml for usage.
 #
-# Requires pyFPDF: "pip install fpdf".
+# Dependencies:
+#     pyFPDF:    "pip install fpdf" (required)
+#     pykwalify: "pip install pykwalify" (optional)
 # 
 
-from fpdf import FPDF
+import logging
+logging.basicConfig()
+logging.getLogger('pykwalify.core').setLevel('CRITICAL')
+
+try:
+    import pykwalify.core
+    import pykwalify.errors
+    HAVE_PYKWALIFY = True
+except ImportError:
+    HAVE_PYKWALIFY = False
+
 from datetime import date, timedelta
 from pprint import pprint
 import collections
 import yaml
 import sys
 import re
+import os
+import inspect
+
+from fpdf import FPDF
 
 Point = collections.namedtuple('Point',['x','y'])
 
@@ -568,8 +584,25 @@ def get_option(name,project,default=None):
 # main function to read filename (.yml) and draw corresponding .pdf
 
 def draw(filename):
-    with file(filename,'r') as fh:
-        project = yaml.load(fh.read())
+
+    if HAVE_PYKWALIFY:
+        srcdir = \
+            os.path.dirname(
+                    os.path.abspath(
+                        inspect.getfile(inspect.currentframe())))
+
+        validator = pykwalify.core.Core(source_file=filename,
+                schema_files=[
+                    os.path.join(srcdir,"schema.yml")])
+        try:
+            validator.validate(raise_exception=True)
+        except pykwalify.errors.SchemaError, e:
+            print "Error: input schema validation error"
+            print e.msg
+            sys.exit(1)
+        
+        with file(filename,'r') as fh:
+            project = yaml.load(fh.read())
 
     n = 0
     for item in project['rows']:

@@ -16,6 +16,10 @@ easily with:
 
     pip install fpdf
 
+You might also want **pykwalify** to validate input a bit better:
+
+    pip install pykwalify
+
 ## Usage
 
 Download this repository and run the standalong script
@@ -30,9 +34,12 @@ self-explanatory, but also described briefly below.
 
 ## Input format
 
-The timeline is defined in YAML. The script doesn't check the
-structure of the input, so if you mis-define it you will probably just
-get an exception during drawing.
+The timeline is defined in YAML. If you install `pykwalify` the script
+will be checked against a schema and you'll get reasonably helpful
+messages about missing or invalid keys.
+
+Otherwise (or if you make a content error that falls within the
+schema) you will probably just get an exception during drawing.
 
 ### Project metadata (required)
 

@@ -1,0 +1,102 @@
+type: map
+mapping: 
+    project:
+        type: str
+        req: true
+    version:
+        type: number
+        req: true
+    unit:
+        type: str
+        enum: ['week', 'month']
+        req: true
+    length:
+        type: int
+        req: true
+    start:
+        type: any
+        req: true
+
+    options:
+        type: map
+        mapping:
+            key_legend:
+                type: bool
+            key_in_block:
+                type: bool
+            show_year:
+                type: bool
+            title:
+                type: any
+            footer:
+                type: any
+            label_width:
+                type: number
+            one_based:
+                type: bool
+    
+    keys:
+        type: seq
+        sequence:
+          - type: map
+            mapping:
+                name:
+                    type: str
+                    req: true
+                color:
+                    type: seq
+                    req: true
+                    sequence:
+                      - type: int
+                        range:
+                            min: 0
+                            max: 255
+
+    rows:
+        type: seq
+        sequence:
+          - type: map
+            mapping:
+                name:
+                    type: str
+                    req: true
+                at:
+                    type: any
+                length:
+                    type: number
+                stripe:
+                    type: bool
+                dep:
+                    type: any
+                key:
+                    type: str
+                gap:
+                    type: bool
+                breaks:
+                    type: seq
+                    sequence:
+                      - type: map
+                        mapping:
+                            name:
+                                type: str
+                                req: true
+                            at:
+                                type: any
+                                req: true
+                            length:
+                                type: number
+                                req: true
+                phases:
+                    type: seq
+                    sequence:
+                      - type: map
+                        mapping:
+                            name:
+                                type: str
+                                req: true
+                            at:
+                                type: any
+                                req: true
+                            length:
+                                type: number
+                                req: true
