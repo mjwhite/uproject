@@ -176,5 +176,5 @@ uProject was written by Mark White, <mark@celos.net>.
 ## Licence
 
 uProject is released under the 2-clause BSD licence. See
-[COPYING.txt](https://bitbucket.org/mjwhite/uproject/COPYING.txt) in
+[COPYING.txt](https://bitbucket.org/mjwhite/uproject/src/default/COPYING.txt) in
 the distribution for details.
