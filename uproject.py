@@ -20,6 +20,9 @@
 #     pyFPDF:    "pip install fpdf" (required)
 #     pykwalify: "pip install pykwalify" (optional)
 # 
+# Copyright (c) 2015-2017 Mark J White <mark@celos.net>
+# Distributed under 2-clause BSD licence; no warranty. See COPYING.txt.
+#
 
 import logging
 logging.basicConfig()

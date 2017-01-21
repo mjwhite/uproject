@@ -172,3 +172,9 @@ dependencies; so to define a single dependency with an offset, use:
 ## Author
 
 uProject was written by Mark White, <mark@celos.net>.
+
+## Licence
+
+uProject is released under the 2-clause BSD licence. See
+[COPYING.txt](https://bitbucket.org/mjwhite/uproject/COPYING.txt) in
+the distribution for details.
