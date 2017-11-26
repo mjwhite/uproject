@@ -604,8 +604,8 @@ def draw(filename):
             print e.msg
             sys.exit(1)
         
-        with file(filename,'r') as fh:
-            project = yaml.load(fh.read())
+    with file(filename,'r') as fh:
+        project = yaml.load(fh.read())
 
     n = 0
     for item in project['rows']:
